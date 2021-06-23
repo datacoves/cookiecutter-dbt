@@ -1,0 +1,6 @@
+generate:
+  sources:
+    schemas:
+      - RAW
+    destination: "models/sources/{{ schema }}/{{ relation }}.sql"
+    model_props_strategy: one_file_per_model
