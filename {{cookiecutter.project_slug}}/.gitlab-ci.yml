@@ -1,0 +1,51 @@
+image: datacoves/dbt-coves
+
+stages:
+  - prep
+  - test
+  - docs
+  - deploy
+
+variables:
+  DBT_PROFILES_DIR: .ci
+
+before_script:
+  - dbt deps
+
+setup:
+  stage: prep
+  script:
+  - DBT_DATABASE=$TEST_DATABASE dbt seed --full-refresh
+
+lint:
+  stage: test
+  needs: ["setup"]
+  script:
+  - dbt-coves check --no-fix
+
+test:
+  stage: test
+  needs: ["setup"]
+  script:
+  - DBT_DATABASE=$TEST_DATABASE dbt test
+
+dbt_docs:
+  stage: docs
+  needs: ["lint","test"]
+  script:
+  - DBT_DATABASE=$TEST_DATABASE dbt docs generate
+  - mv target public
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - public
+    expire_in: 4 weeks
+
+pages:
+  stage: deploy
+  script:
+  - DBT_DATABASE=$PROD_DATABASE dbt docs generate
+  - mv target public
+  artifacts:
+    paths:
+    - public

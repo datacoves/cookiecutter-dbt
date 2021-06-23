@@ -1,0 +1,14 @@
+balboa:
+    target: {{ cookiecutter.target_schema }}
+    outputs:
+      {{ cookiecutter.target_schema }}:
+        type: {{ cookiecutter.adapter }}
+        account: {% raw %}"{{ env_var('DBT_ACCOUNT') }}"{% endraw %}
+        user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
+        role: {{ cookiecutter.snowflake_role.upper() }}
+        password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
+        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
+        warehouse: {{ cookiecutter.snowflake_warehouse.upper() }}
+        schema: {{ cookiecutter.target_schema }}
+        threads: 8
+        keepalives_idle: 0 # default 0, indicating the system default
