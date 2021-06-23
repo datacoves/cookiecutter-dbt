@@ -7,7 +7,7 @@ stages:
   - deploy
 
 variables:
-  DBT_PROFILES_DIR: .ci
+  DBT_PROFILES_DIR: .config
   DBT_DATABASE: $TEST_DATABASE
 
 before_script:
