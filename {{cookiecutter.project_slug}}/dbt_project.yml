@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: '{{ project_name }}'
+name: '{{ cookiecutter.project_name }}'
 version: '1.0.0'
 config-version: 2
 
@@ -27,7 +27,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
-
 # These settings can be overridden in the individual model files
 models:
   materialized: view

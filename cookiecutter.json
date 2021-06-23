@@ -4,6 +4,6 @@
     "ci_tool": [
        "None",
        "GitHub",
-       "Gitlab"
+       "GitLab"
     ]
 }
