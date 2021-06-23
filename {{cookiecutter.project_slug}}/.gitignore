@@ -1,0 +1,21 @@
+# dbt
+target/
+dbt_modules/
+.config/.user.yml
+
+# Virtual envs
+venv/
+.env
+.venv
+env/
+
+
+# VS Code
+.vscode/
+
+# logs
+*.log
+logs/
+
+# Python cache
+__pycache__
