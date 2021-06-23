@@ -1,0 +1,8 @@
+{
+    "project_name": "My Awesome Project",
+    "ci_tool": [
+       "None",
+       "GitHub",
+       "Gitlab"
+    ]
+}
