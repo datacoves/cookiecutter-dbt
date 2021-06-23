@@ -2,5 +2,5 @@ generate:
   sources:
     schemas:
       - RAW
-    destination: "models/sources/{{ schema }}/{{ relation }}.sql"
+    destination: {% raw %}"models/sources/{{ schema }}/{{ relation }}.sql"{% endraw %}
     model_props_strategy: one_file_per_model
