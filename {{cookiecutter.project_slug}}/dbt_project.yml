@@ -29,6 +29,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
 # These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
 models:
   materialized: view
