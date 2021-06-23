@@ -1,4 +1,4 @@
-balboa:
+default:
     target: {{ cookiecutter.target_schema }}
     outputs:
       {{ cookiecutter.target_schema }}:
