@@ -4,3 +4,5 @@ generate:
       - RAW
     destination: {% raw %}"models/sources/{{ schema }}/{{ relation }}.sql"{% endraw %}
     model_props_strategy: one_file_per_model
+    # override default templates creating source_model_props.yml and source_model.sql under this folder
+    templates_folder: "templates"
