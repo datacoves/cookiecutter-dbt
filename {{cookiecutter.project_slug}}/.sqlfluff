@@ -2,7 +2,7 @@
 verbose = 0
 nocolor = False
 dialect = snowflake
-templater = jinja
+templater = dbt
 rules = None
 
 recurse = 0
