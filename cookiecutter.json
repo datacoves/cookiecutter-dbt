@@ -1,18 +1,15 @@
 {
-    "project_name": "My Awesome Project",
+    "project_name": "Awesome dbt Project",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "adapter": [
         "snowflake",
         "bigquery",
-        "redshift",
-        "postgres"
+        "redshift"
     ],
     "target_schema": "dev",
-    "snowflake_role": "ANALYST",
-    "snowflake_warehouse": "TRANSFORMING_WAREHOUSE",
     "ci_tool": [
-       "None",
-       "GitHub",
-       "GitLab"
+        "None",
+        "GitHub",
+        "GitLab"
     ]
 }

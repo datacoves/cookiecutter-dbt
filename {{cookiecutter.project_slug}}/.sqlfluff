@@ -44,7 +44,7 @@ template_blocks_indent = True
 [sqlfluff:templater]
 unwrap_wrapped_queries = True
 
-# Excluding this rule will allow USING 
+# Excluding this rule will allow USING
 exclude_rules = L032
 
 # Some rules have their own specific config.

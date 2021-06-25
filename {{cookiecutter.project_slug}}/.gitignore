@@ -2,6 +2,8 @@
 target/
 dbt_modules/
 .config/.user.yml
+# Remove if you have no secrets in the file in ./config/
+/**/profiles.yml
 
 # Virtual envs
 venv/
