@@ -71,8 +71,8 @@ default:
         # Find out more about Redshift config options here:
         # https://docs.getdbt.com/reference/warehouse-profiles/redshift-profile
 
-        # Set the DBT_DATABASE in your CI or update this to the actual database name
-        dbname: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
+        # Set the TEST_DATABASE in your CI or update this to the actual database name
+        dbname: {% raw %}"{{ env_var('TEST_DATABASE') }}"{% endraw %}
         schema: {{ cookiecutter.target_schema }}
 
         # Set variable DBT_USER in your CI or update this to your database username name

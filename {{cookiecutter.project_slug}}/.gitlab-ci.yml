@@ -16,7 +16,8 @@ before_script:
 setup:
   stage: prep
   script:
-  -  dbt seed --full-refresh
+  - dbt seed --full-refresh
+  - dbt run
 
 lint:
   stage: test
