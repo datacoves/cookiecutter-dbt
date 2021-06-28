@@ -1,5 +1,5 @@
 
-def gitlab_ci_enabled(adapter, ci_tool):
+def post_init_messages(adapter, ci_tool):
 
   if ci_tool == "GitHub":
     docs = "https://docs.github.com/en/actions/reference/environment-variables"
@@ -34,7 +34,7 @@ def main():
     adapter = "{{ cookiecutter.adapter }}"
     ci_tool = "{{ cookiecutter.ci_tool }}"
 
-    gitlab_ci_enabled(adapter, ci_tool)
+    post_init_messages(adapter, ci_tool)
 
 if __name__ == "__main__":
     main()
