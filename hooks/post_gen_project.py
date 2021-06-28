@@ -13,7 +13,7 @@ def post_init_messages(adapter, ci_tool):
   if ci_tool == "None":
     message = (
       f"A base profile.yml file has been created in folder .config\n"
-      f"Edit it and move it to ~/.dbt\n"
+      f"Copy it to ~/.dbt and edit its contents\n"
       f"For more information see https://docs.getdbt.com/dbt-cli/configure-your-profile \n\n"
     )
   else:
