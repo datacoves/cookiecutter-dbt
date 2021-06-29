@@ -1,0 +1,57 @@
+config:
+  use_colors: true
+  send_anonymous_usage_stats: False
+
+default:
+    target: {{ cookiecutter.target_schema }}
+    outputs:
+      {{ cookiecutter.target_schema }}:
+        type: {{ cookiecutter.adapter }}
+
+        # NOTE: DO NOT ADD USERNAME / PASSWORD IN THIS FILE.
+        # Copy it to ~/.dbt/ first
+        # More information can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+
+        threads: 8
+
+        {%- if cookiecutter.adapter == "snowflake" %}
+
+        # Raplace the information below with your specific information
+        database: your_database_name
+        schema: {{ cookiecutter.target_schema }}
+        user: your_database_user_name
+        password: your_database_password
+
+        # Additional Snowflake options
+        # Find out more about Snowflake config options here:
+        # https://docs.getdbt.com/reference/warehouse-profiles/snowflake-profile
+
+        # Keypair authentication use instead of username and password
+        # private_key_path: path_to_your_key_file
+        # private_key_passphrase: passpharse_for_your_key_file_in_needed
+
+        account: your_snowflake_account #like abc12345
+        role: your_snowflake_role
+        warehouse: your_snowflake_warehouse
+
+        client_session_keep_alive: False
+        # query_tag: my_tag
+        {%- endif %}
+
+        {%- if cookiecutter.adapter == "redshift" %}
+        # Additional Redshift options
+        # Find out more about Redshift config options here:
+        # https://docs.getdbt.com/reference/warehouse-profiles/redshift-profile
+
+        # Raplace the information below with your specific information
+        dbname: your_database_name
+        schema: {{ cookiecutter.target_schema }}
+        user: your_database_user_name
+        password: your_database_password
+
+        host: redshift_hostname # like hostname.region.redshift.amazonaws.com
+        port: 5439
+        keepalives_idle: 0 # default 0, indicating the system default
+        # search_path: public # optional, not recommended
+        # sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
+        {%- endif %}

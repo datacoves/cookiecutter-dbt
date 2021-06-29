@@ -1,34 +1,24 @@
-config:
-  use_colors: true
-  send_anonymous_usage_stats: False
-
 default:
     target: {{ cookiecutter.target_schema }}
     outputs:
       {{ cookiecutter.target_schema }}:
         type: {{ cookiecutter.adapter }}
 
-        # NOTE: DO NOT ADD USERNAME / PASSWORD IN
-        # THIS FILE.  Copy it to ~/.dbt/ first
-        # More information can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-
-        # NOTE: This file is in .gitignore as a precaution
-        # For CI, remove from .gitignore when you are sure no secrets are in this file
-        # e.g. only reference env_vars
+        # More information for the options in this file
+        # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
 
         threads: 8
 
         {%- if cookiecutter.adapter == "snowflake" %}
 
-        # Set the DBT_DATABASE in your CI or update this to the actual database name
-        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
+        # Set the DBT_TEST_DATABASE in your CI
+        database: {% raw %}"{{ env_var('DBT_TEST_DATABASE') }}"{% endraw %}
         schema: {{ cookiecutter.target_schema }}
 
-        # Set variable DBT_USER in your CI or update this to your database username name
+        # Set variable DBT_USER in your CI
         user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
 
-        # Remember to copy this file to ~/.dbt/ first
-        # Set variable DBT_PASSWORD in your CI or update this to your database password
+        # Set variable DBT_PASSWORD in your CI
         password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
 
         # Additional Snowflake options
@@ -52,39 +42,26 @@ default:
         # query_tag: my_tag
         {%- endif %}
 
-        {%- if cookiecutter.adapter == "bigquery" %}
-        # Additional BigQuery options
-        # Find out more about BigQuery config options here:
-        # https://docs.getdbt.com/reference/warehouse-profiles/bigquery-profile
-
-        method: oauth
-        project: [GCP project id]
-        dataset: [the name of your dbt dataset] # You can also use "schema" here
-        timeout_seconds: 300
-        location: US # Optional, one of US or EU
-        priority: interactive
-        retries: 1
-        {%- endif %}
-
         {%- if cookiecutter.adapter == "redshift" %}
         # Additional Redshift options
         # Find out more about Redshift config options here:
         # https://docs.getdbt.com/reference/warehouse-profiles/redshift-profile
 
-        # Set the TEST_DATABASE in your CI or update this to the actual database name
-        dbname: {% raw %}"{{ env_var('TEST_DATABASE') }}"{% endraw %}
+        # Set the TEST_DATABASE in your CI
+        dbname: {% raw %}"{{ env_var('DBT_TEST_DATABASE') }}"{% endraw %}
         schema: {{ cookiecutter.target_schema }}
 
-        # Set variable DBT_USER in your CI or update this to your database username name
+        # Set variable DBT_USER in your CI
         user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
 
-        # Remember to copy this file to ~/.dbt/ first
-        # Set variable DBT_PASSWORD in your CI or update this to your database password
+        # Set variable DBT_PASSWORD in your CI
         password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
 
-        host: hostname.region.redshift.amazonaws.com
+        # Set variable DBT_REDSHIFT_ACCOUNT in your CI
+        host: {% raw %}"{{ env_var('DBT_REDSHIFT_ACCOUNT') }}"{% endraw %}
+
         port: 5439
         keepalives_idle: 0 # default 0, indicating the system default
         # search_path: public # optional, not recommended
-        sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
+        # sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
         {%- endif %}
