@@ -1,3 +1,5 @@
+# For more information on this file, visit https://github.com/datacoves/dbt-coves
+
 generate:
   sources:
     schemas:

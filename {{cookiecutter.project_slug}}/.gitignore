@@ -2,6 +2,7 @@
 target/
 dbt_modules/
 .config/.user.yml
+/profiles.yml
 
 # Virtual envs
 venv/
