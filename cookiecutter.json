@@ -6,6 +6,10 @@
         "redshift"
     ],
     "target_schema": "dev",
+    "run_git_init": [
+        "Yes",
+        "No"
+    ],
     "ci_tool": [
         "None",
         "GitHub",

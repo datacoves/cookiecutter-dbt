@@ -7,8 +7,9 @@ def move_user_profiles():
   target_file = PROJECT_DIRECTORY.joinpath('profiles.yml')
   Path(source_file).rename(target_file)
 
-def initialize_git_repo():
-  os.system("git init")
+def initialize_git_repo(initialize_repo):
+  if initialize_repo == "Yes":
+    os.system("git init")
 
 def post_init_messages(adapter, ci_tool):
 
@@ -29,7 +30,7 @@ def post_init_messages(adapter, ci_tool):
     )
   else:
     message = (
-      f"A base profile.yml file has been created in folder your project folder\n"
+      f"A base profile.yml file has been created in your project folder\n"
       f"Copy it to ~/.dbt and edit its contents for local development\n"
       f"For more information see https://docs.getdbt.com/dbt-cli/configure-your-profile \n\n"
 
@@ -43,9 +44,10 @@ def post_init_messages(adapter, ci_tool):
 def main():
     adapter = "{{ cookiecutter.adapter }}"
     ci_tool = "{{ cookiecutter.ci_tool }}"
+    initialize_repo = "{{ cookiecutter.run_git_init }}"
 
     move_user_profiles()
-    initialize_git_repo()
+    initialize_git_repo(initialize_repo)
     post_init_messages(adapter, ci_tool)
 
 if __name__ == "__main__":
