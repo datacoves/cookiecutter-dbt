@@ -4,7 +4,7 @@ Powered by Cookiecutter, Cookiecutter dbt is a framework for jumpstarting produc
 
 ## Features
 
-* For dbt 0.19.1
+* For dbt >= 0.18.0
 * Works with Python 3.8
 * SQLFluff linting
 * pre-commit hooks integrated
