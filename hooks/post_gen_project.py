@@ -2,14 +2,18 @@ from pathlib import Path
 import os
 
 PROJECT_DIRECTORY = Path().resolve()
+
+
 def move_user_profiles():
   source_file = PROJECT_DIRECTORY.joinpath('.config/user_profiles.yml')
   target_file = PROJECT_DIRECTORY.joinpath('profiles.yml')
   Path(source_file).rename(target_file)
 
+
 def initialize_git_repo(initialize_repo):
   if initialize_repo == "Yes":
     os.system("git init")
+
 
 def post_init_messages(adapter, ci_tool):
 
@@ -41,6 +45,22 @@ def post_init_messages(adapter, ci_tool):
     )
   print(message)
 
+
+def cleanup():
+  remove_paths = [
+      '{% if cookiecutter.ci_tool != "GitHub" %} .github {% endif %}',
+      '{% if cookiecutter.ci_tool != "GitLab" %} .gitlab-ci.yml {% endif %}',
+  ]
+
+  for path in remove_paths:
+      path = path.strip()
+      if path and os.path.exists(path):
+          if os.path.isdir(path):
+              os.rmdir(path)
+          else:
+              os.unlink(path)
+
+
 def main():
     adapter = "{{ cookiecutter.adapter }}"
     ci_tool = "{{ cookiecutter.ci_tool }}"
@@ -49,6 +69,7 @@ def main():
     move_user_profiles()
     initialize_git_repo(initialize_repo)
     post_init_messages(adapter, ci_tool)
+    cleanup()
 
 if __name__ == "__main__":
     main()
