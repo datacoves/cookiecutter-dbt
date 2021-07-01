@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import shutil
 
 PROJECT_DIRECTORY = Path().resolve()
 
@@ -48,28 +49,28 @@ def post_init_messages(adapter, ci_tool):
 
 def cleanup():
   remove_paths = [
-      '{% if cookiecutter.ci_tool != "GitHub" %} .github {% endif %}',
-      '{% if cookiecutter.ci_tool != "GitLab" %} .gitlab-ci.yml {% endif %}',
+    '{% if cookiecutter.ci_tool != "GitHub" %} .github {% endif %}',
+    '{% if cookiecutter.ci_tool != "GitLab" %} .gitlab-ci.yml {% endif %}',
   ]
 
   for path in remove_paths:
-      path = path.strip()
-      if path and os.path.exists(path):
-          if os.path.isdir(path):
-              os.rmdir(path)
-          else:
-              os.unlink(path)
+    path = path.strip()
+    if path and os.path.exists(path):
+      if os.path.isdir(path):
+        shutil.rmtree(path, ignore_errors=True)
+      else:
+        os.unlink(path)
 
 
 def main():
-    adapter = "{{ cookiecutter.adapter }}"
-    ci_tool = "{{ cookiecutter.ci_tool }}"
-    initialize_repo = "{{ cookiecutter.run_git_init }}"
+  adapter = "{{ cookiecutter.adapter }}"
+  ci_tool = "{{ cookiecutter.ci_tool }}"
+  initialize_repo = "{{ cookiecutter.run_git_init }}"
 
-    move_user_profiles()
-    initialize_git_repo(initialize_repo)
-    post_init_messages(adapter, ci_tool)
-    cleanup()
+  move_user_profiles()
+  initialize_git_repo(initialize_repo)
+  post_init_messages(adapter, ci_tool)
+  cleanup()
 
 if __name__ == "__main__":
-    main()
+  main()
