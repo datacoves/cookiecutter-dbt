@@ -29,17 +29,17 @@ def post_init_messages(adapter, ci_tool):
 
   if ci_tool == "None":
     message = (
-      f"A base profile.yml file has been created in folder your project folder\n"
+      f"A base profiles.yml file has been created in folder your project folder\n"
       f"Copy it to ~/.dbt and edit its contents\n"
       f"For more information see https://docs.getdbt.com/dbt-cli/configure-your-profile \n\n"
     )
   else:
     message = (
-      f"A base profile.yml file has been created in your project folder\n"
+      f"A base profiles.yml file has been created in your project folder\n"
       f"Copy it to ~/.dbt and edit its contents for local development\n"
       f"For more information see https://docs.getdbt.com/dbt-cli/configure-your-profile \n\n"
 
-      f"The CI job will leverage the profile.yml file in the .config folder.\n"
+      f"The CI job will leverage the profiles.yml file in the .config folder.\n"
       f"You will need to set the corresponding environment variables in the {ci_tool}\n"
       f"project to run dbt as part of your CI pipeline.\n"
       f"Learn more about {ci_tool} CI/CD variables here: {docs}"
