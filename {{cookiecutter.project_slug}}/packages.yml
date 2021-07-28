@@ -1,6 +1,4 @@
 packages:
-  - package: fishtown-analytics/dbt_utils
-    version: 0.6.4
   - package: calogica/dbt_expectations
     version: [">=0.3.0", "<0.4.0"]
     # <see https://github.com/calogica/dbt-expectations/releases/latest> for the latest version tag
