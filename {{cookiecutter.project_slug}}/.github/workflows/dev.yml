@@ -1,12 +1,12 @@
-name: Seed, Run, Check, Test and Docs
+name: Seed, Run, Check and Test
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
       - master
   pull_request:
-    branches:
+    branches-ignore:
       - main
       - master
 
@@ -51,14 +51,3 @@ jobs:
         uses: datacoves/dbt-coves-action@v1
         with:
           command: "dbt test"
-
-      - name: generate docs
-        uses: datacoves/dbt-coves-action@v1
-        with:
-          command: "dbt docs generate"
-
-      - name: Deploy docs 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: target
