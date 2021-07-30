@@ -7,7 +7,18 @@ stages:
   - deploy
 
 variables:
+  DBT_USER: $DBT_TEST_USER
+  DBT_PASSWORD: $DBT_TEST_PASSWORD
+  DBT_DATABASE: $DBT_TEST_DATABASE
   DBT_PROFILES_DIR: .config
+{%- if cookiecutter.adapter == "snowflake" %}
+  DBT_SNOWFLAKE_ACCOUNT: $DBT_SNOWFLAKE_ACCOUNT
+  DBT_SNOWFLAKE_ROLE: $DBT_SNOWFLAKE_ROLE
+  DBT_SNOWFLAKE_WAREHOUSE: $DBT_SNOWFLAKE_WAREHOUSE
+{%- endif %}
+{%- if cookiecutter.adapter == "redshift" %}
+  DBT_REDSHIFT_ACCOUNT: $DBT_REDSHIFT_ACCOUNT
+{%- endif %}
 
 before_script:
   - dbt deps
