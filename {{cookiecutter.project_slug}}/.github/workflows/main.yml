@@ -15,9 +15,9 @@ jobs:
     name: Main CI
     runs-on: ubuntu-latest
     env:
-      DBT_PROD_USER: {% raw %}${{ secrets.DBT_PROD_USER }}{% endraw %}
-      DBT_PROD_PASSWORD: {% raw %}${{ secrets.DBT_PROD_PASSWORD }}{% endraw %}
-      DBT_PROD_DATABASE: {% raw %}${{ secrets.DBT_PROD_DATABASE }}{% endraw %}
+      DBT_USER: {% raw %}${{ secrets.DBT_PROD_USER }}{% endraw %}
+      DBT_PASSWORD: {% raw %}${{ secrets.DBT_PROD_PASSWORD }}{% endraw %}
+      DBT_DATABASE: {% raw %}${{ secrets.DBT_PROD_DATABASE }}{% endraw %}
       DBT_PROFILES_DIR: .config
 {%- if cookiecutter.adapter == "snowflake" %}
       DBT_SNOWFLAKE_ACCOUNT: {% raw %}${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}{% endraw %}

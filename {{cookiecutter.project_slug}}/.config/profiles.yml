@@ -11,8 +11,8 @@ default:
 
         {%- if cookiecutter.adapter == "snowflake" %}
 
-        # Set the DBT_TEST_DATABASE in your CI
-        database: {% raw %}"{{ env_var('DBT_TEST_DATABASE') }}"{% endraw %}
+        # Set the DBT_DATABASE in your CI
+        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
         schema: {{ cookiecutter.target_schema }}
 
         # Set variable DBT_USER in your CI
@@ -48,7 +48,7 @@ default:
         # https://docs.getdbt.com/reference/warehouse-profiles/redshift-profile
 
         # Set the TEST_DATABASE in your CI
-        dbname: {% raw %}"{{ env_var('DBT_TEST_DATABASE') }}"{% endraw %}
+        dbname: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
         schema: {{ cookiecutter.target_schema }}
 
         # Set variable DBT_USER in your CI
