@@ -37,15 +37,15 @@ jobs:
         with:
           command: "dbt seed --full-refresh"
 
-      - name: seed
+      - name: dbt run
         uses: datacoves/dbt-coves-action@v1
         with:
           command: "dbt run"
 
-      - name: lint
+      - name: check
         uses: datacoves/dbt-coves-action@v1
         with:
-          command: "dbt-coves check --no-fix"
+          command: "pre-commit autoupdate && dbt-coves check --no-fix"
 
       - name: test
         uses: datacoves/dbt-coves-action@v1
@@ -57,7 +57,7 @@ jobs:
         with:
           command: "dbt docs generate"
 
-      - name: Deploy docs 🚀
+      - name: deploy docs 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages

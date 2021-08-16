@@ -33,6 +33,7 @@ lint:
   stage: test
   needs: ["setup"]
   script:
+  - pre-commit autoupdate
   - dbt-coves check --no-fix
 
 test:

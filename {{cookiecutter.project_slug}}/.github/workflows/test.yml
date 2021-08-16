@@ -37,7 +37,7 @@ jobs:
         with:
           command: "dbt seed --full-refresh"
 
-      - name: seed
+      - name: dbt run
         uses: datacoves/dbt-coves-action@v1
         with:
           command: "dbt run"
@@ -45,7 +45,7 @@ jobs:
       - name: lint
         uses: datacoves/dbt-coves-action@v1
         with:
-          command: "dbt-coves check --no-fix"
+          command: "pre-commit autoupdate && dbt-coves check --no-fix"
 
       - name: test
         uses: datacoves/dbt-coves-action@v1
