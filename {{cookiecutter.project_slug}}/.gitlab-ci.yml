@@ -1,4 +1,5 @@
-image: datacoves/dbt-coves
+# dbt and dbt-coves versions can be set i.e. datacoves/dbt-coves:0.19.2-0.20.0-a.3
+image: datacoves/dbt-coves:latest
 
 stages:
   - prep
