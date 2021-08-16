@@ -45,7 +45,7 @@ jobs:
       - name: check
         uses: datacoves/dbt-coves-action@v1
         with:
-          command: "pre-commit autoupdate && dbt-coves check --no-fix"
+          command: "dbt-coves check --no-fix"
 
       - name: test
         uses: datacoves/dbt-coves-action@v1

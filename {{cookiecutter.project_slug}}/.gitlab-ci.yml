@@ -1,4 +1,4 @@
-# dbt and dbt-coves versions can be set i.e. datacoves/dbt-coves:0.19.2-0.20.0-a.3
+# dbt and dbt-coves versions can be set i.e. datacoves/dbt-coves:0.19.2-0.20.0a3
 image: datacoves/dbt-coves:latest
 
 stages:
@@ -34,7 +34,6 @@ lint:
   stage: test
   needs: ["setup"]
   script:
-  - pre-commit autoupdate
   - dbt-coves check --no-fix
 
 test:
