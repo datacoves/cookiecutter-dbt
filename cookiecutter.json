@@ -3,7 +3,8 @@
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "adapter": [
         "snowflake",
-        "redshift"
+        "redshift",
+        "spark"
     ],
     "target_schema": "dev",
     "run_git_init": [

@@ -9,6 +9,20 @@ default:
 
         threads: 8
 
+        {%- if cookiecutter.adapter == "spark" %}
+
+        method: odbc
+        driver: {% raw %}"{{ env_var('DBT_DATABRICKS_DRIVER_PATH') }}"{% endraw %}
+        schema: {{ cookiecutter.target_schema }}
+        host: {% raw %}"{{ env_var('DBT_DATABRICKS_HOST') }}"{% endraw %}
+        token: {% raw %}"{{ env_var('DBT_DATABRICKS_TOKEN') }}"{% endraw %}
+        cluster: {% raw %}"{{ env_var('DBT_DATABRICKS_CLUSTER') }}"{% endraw %}
+        port: 443
+        connect_retries: 5
+        connect_timeout: 60
+
+        {%- endif %}
+
         {%- if cookiecutter.adapter == "snowflake" %}
 
         # Set the DBT_DATABASE in your CI
