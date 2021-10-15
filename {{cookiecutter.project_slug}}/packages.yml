@@ -1,4 +1,4 @@
 packages:
   - package: calogica/dbt_expectations
-    version: [">=0.3.0", "<=0.4.0"]
+    version: [">=0.3.0", "<=0.4.3"]
     # <see https://github.com/calogica/dbt-expectations/releases/latest> for the latest version tag
