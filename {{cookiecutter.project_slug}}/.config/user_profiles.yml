@@ -70,3 +70,24 @@ default:
         # search_path: public # optional, not recommended
         # sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
         {%- endif %}
+
+        {%- if cookiecutter.adapter == "postgres" %}
+        # Additional Postgres options
+        # Find out more about Postgres config options here:
+        # https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile
+
+        # Replace the information below with your specific information
+        dbname: your_database_name
+        schema: {{ cookiecutter.target_schema }}
+        user: your_database_user_name
+        password: your_database_password
+
+        host: localhost # your Postgres host name
+        port: 5432
+        keepalives_idle: 0 # default 0, indicating the system default. See below
+        connect_timeout: 10 # default 10 seconds
+        # search_path: [optional, override the default postgres search_path]
+        # role: [optional, set the role dbt assumes when executing queries]
+        # sslmode: [optional, set the sslmode used to connect to the database]
+
+        {%- endif %}
