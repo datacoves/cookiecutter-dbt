@@ -4,7 +4,8 @@
     "adapter": [
         "snowflake",
         "redshift",
-        "spark"
+        "spark",
+        "postgres"
     ],
     "target_schema": "dev",
     "run_git_init": [

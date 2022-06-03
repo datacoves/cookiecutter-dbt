@@ -79,3 +79,32 @@ default:
         # search_path: public # optional, not recommended
         # sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
         {%- endif %}
+
+        {%- if cookiecutter.adapter == "postgres" %}
+
+        # Set the DBT_DATABASE in your CI
+        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
+        schema: {{ cookiecutter.target_schema }}
+
+        # Set variable DBT_USER in your CI
+        user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
+
+        # Set variable DBT_PASSWORD in your CI
+        password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
+
+        # Additional Postgres options
+        # Find out more about Postgres config options here:
+        # https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile
+
+        # Set variable DBT_POSTGRES_HOST in your CI
+        host: {% raw %}"{{ env_var('DBT_POSTGRES_HOST') }}"{% endraw %}
+        port: 5432
+
+        keepalives_idle: 0 # default 0, indicating the system default.
+        connect_timeout: 10 # default 10 seconds
+        
+        # search_path: [optional, override the default postgres search_path]
+        # role: [optional, set the role dbt assumes when executing queries]
+        # sslmode: [optional, set the sslmode used to connect to the database]
+
+        {%- endif %}
