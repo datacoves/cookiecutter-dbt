@@ -1,6 +1,6 @@
 # Cookiecutter dbt
 
-Powered by Cookiecutter, Cookiecutter dbt is a framework for jumpstarting production-ready dbt projects quickly.
+Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/), `Cookiecutter dbt` is a framework for jumpstarting production-ready dbt projects quickly.
 
 ## Features
 
