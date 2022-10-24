@@ -18,10 +18,3 @@ Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/
 pip install "cookiecutter>=1.7.0"
 cookiecutter gh:datacoves/cookiecutter-dbt
 ```
-
-### Using dbt-coves CLI
-
-```
-pip install dbt-coves
-dbt-coves init
-```
