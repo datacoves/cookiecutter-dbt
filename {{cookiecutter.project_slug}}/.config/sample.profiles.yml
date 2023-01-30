@@ -13,7 +13,7 @@
       
       account: {{ cookiecutter.snowflake_account }}
       authenticator: externalbrowser 
-      role: {{ cookicutter.project_prefix }}_TRANSFORMER 
+      role: {{ cookiecutter.project_prefix }}_TRANSFORMER 
       warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
       database: {{ cookiecutter.project_prefix }}_DEV
       schema: dev_YOURINITIALS

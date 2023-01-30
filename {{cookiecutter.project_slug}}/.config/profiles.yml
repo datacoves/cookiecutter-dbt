@@ -1,4 +1,4 @@
-{{ cookiecutter.project_prefix }}-data-models:
+{{ cookiecutter.project_slug }}:
   target: dev
   outputs:
     dev:
@@ -8,10 +8,10 @@
       
       account: {{ cookiecutter.snowflake_account }}
       authenticator: externalbrowser 
-      role: {{ cookicutter.project_prefix }}_TRANSFORMER 
+      role: {{ cookiecutter.project_prefix }}_TRANSFORMER 
       warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
       database: {{ cookiecutter.project_prefix }}_DEV
-      schema: dev_{{ cookicutter.user_initials }}
+      schema: dev_{{ cookiecutter.user_initials }}
       user: {{ cookiecutter.user_email }}
       threads: 8
 
@@ -19,10 +19,10 @@
       type: snowflake 
       account: {{ cookiecutter.snowflake_account }}
       authenticator: externalbrowser 
-      role: {{ cookicutter.project_prefix }}_DEPLOYER 
+      role: {{ cookiecutter.project_prefix }}_DEPLOYER 
       warehouse: {{ cookiecutter.project_prefix }}_DEPLOYER_WH
       database: {{ cookiecutter.project_prefix }}
-      schema: {{ coockiecutter.project_analysis_schema }}
+      schema: {{ cookiecutter.project_analysis_schema }}
       user: {{ cookiecutter.user_email }}
       threads: 8
 
@@ -33,10 +33,10 @@
       
       account: {{ cookiecutter.snowflake_account }}
       authenticator: externalbrowser 
-      role: {{ cookicutter.project_prefix }}_ADMIN 
+      role: {{ cookiecutter.project_prefix }}_ADMIN 
       warehouse: {{ cookiecutter.project_prefix }}_ADMIN_WH
       database: {{ cookiecutter.project_prefix }}
-      schema: {{ coockiecutter.project_analysis_schema }}
+      schema: {{ cookiecutter.project_analysis_schema }}
       user: {{ cookiecutter.user_email }}
       threads: 8
 
