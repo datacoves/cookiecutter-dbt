@@ -11,7 +11,7 @@
     "run_git_init": [
         "Yes",
         "No"
-    ],
+    ],  
     "environment_manager" : [
         "pipenv",
         "pip", 
@@ -20,10 +20,5 @@
     "run_env_creation": [
         "Yes",
         "No"
-    ],
-    "ci_tool": [
-        "None",
-        "GitHub",
-        "GitLab"
     ]
 }
