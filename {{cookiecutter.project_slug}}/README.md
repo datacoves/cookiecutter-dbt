@@ -59,6 +59,16 @@ Use `exit` to get out of the virtual environment.
 
 <hr>
 
+## Provisioning resources
+
+To provision the expected databases, warehouses, roles, and project tags, use the `ks_provision_snowflake` macro to deploy from the `ks-dbt-utils` package. 
+
+```
+./activate dbt run-operation ks_provision_snowflake --target super-admin
+```
+
+NOTE: `super-admin` target assumes you have a profile configured to run as account admin. You will need higher level privileges to execute this.  If you do not have `ACCOUNTADMIN` please contact the data engineering team for assistance. 
+
 ## Loading external sources
 The external loading process uses `dbt-external-tables` with a slight modification (forked) to handle our specific DMS use case. Note: you need the `ops_admin` role to be able to execute these commands.  There is no DEV mode for this operation, so be careful with what you're running. 
 

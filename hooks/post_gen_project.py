@@ -31,7 +31,6 @@ def post_init_messages(adapter, ci_tool):
     print(
         "\nProject initialized successfully!\n"
     )
-    ci_tool = 'CircleCI'
     docs = 'https://circleci.com/docs/env-vars/'
     message = (
         f"A base profiles.yml file has been created in your project folder\n"
@@ -48,8 +47,6 @@ def post_init_messages(adapter, ci_tool):
 
 def cleanup():
     remove_paths = [
-        '{% if cookiecutter.ci_tool != "GitHub" %} .github {% endif %}',
-        '{% if cookiecutter.ci_tool != "GitLab" %} .gitlab-ci.yml {% endif %}',
     ]
 
     for path in remove_paths:
@@ -62,7 +59,7 @@ def cleanup():
 
 
 def main():
-    ci_tool = "{{ cookiecutter.ci_tool }}"
+    ci_tool = "CircleCI"
     initialize_repo = "{{ cookiecutter.run_git_init }}"
     run_env_creation = "{{ cookiecutter.run_env_creation }}"
     environment_manager = "{{ cookiecutter.environment_manager }}"
