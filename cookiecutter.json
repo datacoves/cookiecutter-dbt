@@ -1,6 +1,7 @@
 {
     "project_name": "Awesome dbt Project",
     "project_prefix" : "TEST",
+    "project_code" : "XX-12345 Test Project",
     "project_slug": "{{cookiecutter.project_prefix.lower() }}-data-models",
     "project_analysis_schema": "analytics",
     "snowflake_account": "keystone-projects",
