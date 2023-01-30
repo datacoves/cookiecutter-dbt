@@ -1,4 +1,4 @@
-{{ cookiecutter.project_slug }}:
+{{ cookiecutter.project_slug.replace('-', '_') }}:
   target: dev
   outputs:
     dev:
