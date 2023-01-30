@@ -5,16 +5,26 @@ import shutil
 PROJECT_DIRECTORY = Path().resolve()
 
 
-def move_user_profiles():
-    source_file = PROJECT_DIRECTORY.joinpath('.config/user_profiles.yml')
-    target_file = PROJECT_DIRECTORY.joinpath('profiles.yml')
-    Path(source_file).rename(target_file)
-
 
 def initialize_git_repo(initialize_repo):
     if initialize_repo == "Yes":
         os.system("git init")
 
+def init_env(run_env_creation, environment_manager):
+    if run_env_creation == 'No':
+        pass 
+
+    if environment_manager == 'pipenv':
+        try:
+            os.system('pipenv install')
+        except:
+            print('Env creation failed. You must run the following commands to finish the installation:')
+            print('pip install pipenv')
+            print('pipenv install')
+    elif environment_manager == 'pip': 
+        os.system('pip install dbt-snowflake')
+
+    
 
 def post_init_messages(adapter, ci_tool):
     if ci_tool == "GitHub":
@@ -62,13 +72,14 @@ def cleanup():
 
 
 def main():
-    adapter = "{{ cookiecutter.adapter }}"
     ci_tool = "{{ cookiecutter.ci_tool }}"
     initialize_repo = "{{ cookiecutter.run_git_init }}"
+    run_env_creation = "{{ cookiecutter.run_env_creation }}"
+    environment_manager = "{{ cookiecutter.environment_manager }}"
 
-    move_user_profiles()
     initialize_git_repo(initialize_repo)
-    post_init_messages(adapter, ci_tool)
+    init_env(run_env_creation, environment_manager)
+    post_init_messages('snowflake', ci_tool)
     cleanup()
 
 
