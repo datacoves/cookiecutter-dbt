@@ -1,0 +1,23 @@
+# How to use this file
+# This is a sample profiles.yml with most of the values filled in
+# to use it, replace the capitalized variables with data unique to you.
+# for example: YOUREMAIL@keystonestrategy should become atestuser@keystonestrategy.com
+# filled in with your email address
+
+{{ cookiecutter.project_prefix }}-data-models:
+  outputs:
+    dev:
+      type: snowflake 
+      # More information for the options in this file
+      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+      
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: {{ cookicutter.project_prefix }}_TRANSFORMER 
+      warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
+      database: {{ cookiecutter.project_prefix }}_DEV
+      schema: dev_YOURINITIALS
+      user: YOUREMAIL@keystonestrategy.com
+      threads: 8
+
+  target: dev
