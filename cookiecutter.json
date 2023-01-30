@@ -1,13 +1,11 @@
 {
     "project_name": "Awesome dbt Project",
-    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-    "adapter": [
-        "snowflake",
-        "redshift",
-        "spark",
-        "postgres"
-    ],
-    "target_schema": "dev",
+    "project_prefix" : "TEST",
+    "project_slug": "{{cookiecutter.project_prefix.lower() }}-data-models",
+    "project_analysis_schema": "analytics",
+    "snowflake_account_name": "keystone-projects",
+    "user_email" : "you@keystonestrategy.com",
+    "user_initials" : "ABC", 
     "run_git_init": [
         "Yes",
         "No"

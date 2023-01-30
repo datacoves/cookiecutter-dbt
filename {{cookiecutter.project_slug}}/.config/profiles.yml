@@ -1,110 +1,52 @@
 default:
     target: {{ cookiecutter.target_schema }}
     outputs:
-      {{ cookiecutter.target_schema }}:
-        type: {{ cookiecutter.adapter }}
-
+      dev:
+        type: snowflake 
         # More information for the options in this file
         # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-
+        
+        account: {{ cookiecutter.snowflake_account }}
+        authenticator: externalbrowser 
+        role: {{ cookicutter.project_prefix }}_TRANSFORMER 
+        warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
+        database: {{ cookiecutter.project_prefix }}_DEV
+        schema: dev_{{ cookicutter.user_initials }}
+        user: {{ cookiecutter.user_email }}
         threads: 8
 
-        {%- if cookiecutter.adapter == "spark" %}
+      prod:
+        type: snowflake 
+        account: {{ cookiecutter.snowflake_account }}
+        authenticator: externalbrowser 
+        role: {{ cookicutter.project_prefix }}_DEPLOYER 
+        warehouse: {{ cookiecutter.project_prefix }}_DEPLOYER_WH
+        database: {{ cookiecutter.project_prefix }}
+        schema: {{ coockiecutter.project_analysis_schema }}
+        user: {{ cookiecutter.user_email }}
+        threads: 8
 
-        method: odbc
-        driver: {% raw %}"{{ env_var('DBT_DATABRICKS_DRIVER_PATH') }}"{% endraw %}
-        schema: {{ cookiecutter.target_schema }}
-        host: {% raw %}"{{ env_var('DBT_DATABRICKS_HOST') }}"{% endraw %}
-        token: {% raw %}"{{ env_var('DBT_DATABRICKS_TOKEN') }}"{% endraw %}
-        cluster: {% raw %}"{{ env_var('DBT_DATABRICKS_CLUSTER') }}"{% endraw %}
-        port: 443
-        connect_retries: 5
-        connect_timeout: 60
-
-        {%- endif %}
-
-        {%- if cookiecutter.adapter == "snowflake" %}
-
-        # Set the DBT_DATABASE in your CI
-        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
-        schema: {{ cookiecutter.target_schema }}
-
-        # Set variable DBT_USER in your CI
-        user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
-
-        # Set variable DBT_PASSWORD in your CI
-        password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
-
-        # Additional Snowflake options
-        # Find out more about Snowflake config options here:
-        # https://docs.getdbt.com/reference/warehouse-profiles/snowflake-profile
-
-        # Keypair authentication use instead of username and password
-        # private_key_path: {% raw %}"{{ env_var('DBT_KEY_PATH') }}"{% endraw %}
-        # private_key_passphrase: {% raw %}"{{ env_var('DBT_KEY_PASSPHRASE') }}"{% endraw %}
-
-        # Set the DBT_SNOWFLAKE_ACCOUNT in your CI or update this to the actual Snowflake account like abc12345]
-        account: {% raw %}"{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"{% endraw %}
-
-        # Set the DBT_SNOWFLAKE_ROLE in your CI or update this to the actual role you use in Snowflake
-        role: {% raw %}"{{ env_var('DBT_SNOWFLAKE_ROLE') }}"{% endraw %}
-
-        # Set the DBT_SNOWFLAKE_WAREHOUSE in your CI or update this to the actual Warehouse you use in Snowflake
-        warehouse: {% raw %}"{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"{% endraw %}
-
-        client_session_keep_alive: False
-        # query_tag: my_tag
-        {%- endif %}
-
-        {%- if cookiecutter.adapter == "redshift" %}
-        # Additional Redshift options
-        # Find out more about Redshift config options here:
-        # https://docs.getdbt.com/reference/warehouse-profiles/redshift-profile
-
-        # Set the TEST_DATABASE in your CI
-        dbname: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
-        schema: {{ cookiecutter.target_schema }}
-
-        # Set variable DBT_USER in your CI
-        user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
-
-        # Set variable DBT_PASSWORD in your CI
-        password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
-
-        # Set variable DBT_REDSHIFT_ACCOUNT in your CI
-        host: {% raw %}"{{ env_var('DBT_REDSHIFT_ACCOUNT') }}"{% endraw %}
-
-        port: 5439
-        keepalives_idle: 0 # default 0, indicating the system default
-        # search_path: public # optional, not recommended
-        # sslmode: [optional, set the sslmode used to connect to the database (in case this parameter is set, will look for ca in ~/.postgresql/root.crt)]
-        {%- endif %}
-
-        {%- if cookiecutter.adapter == "postgres" %}
-
-        # Set the DBT_DATABASE in your CI
-        database: {% raw %}"{{ env_var('DBT_DATABASE') }}"{% endraw %}
-        schema: {{ cookiecutter.target_schema }}
-
-        # Set variable DBT_USER in your CI
-        user: {% raw %}"{{ env_var('DBT_USER') }}"{% endraw %}
-
-        # Set variable DBT_PASSWORD in your CI
-        password: {% raw %}"{{ env_var('DBT_PASSWORD') }}"{% endraw %}
-
-        # Additional Postgres options
-        # Find out more about Postgres config options here:
-        # https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile
-
-        # Set variable DBT_POSTGRES_HOST in your CI
-        host: {% raw %}"{{ env_var('DBT_POSTGRES_HOST') }}"{% endraw %}
-        port: 5432
-
-        keepalives_idle: 0 # default 0, indicating the system default.
-        connect_timeout: 10 # default 10 seconds
+      admin:
+        type: snowflake 
+        # More information for the options in this file
+        # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
         
-        # search_path: [optional, override the default postgres search_path]
-        # role: [optional, set the role dbt assumes when executing queries]
-        # sslmode: [optional, set the sslmode used to connect to the database]
+        account: {{ cookiecutter.snowflake_account }}
+        authenticator: externalbrowser 
+        role: {{ cookicutter.project_prefix }}_ADMIN 
+        warehouse: {{ cookiecutter.project_prefix }}_ADMIN_WH
+        database: {{ cookiecutter.project_prefix }}
+        schema: {{ coockiecutter.project_analysis_schema }}
+        user: {{ cookiecutter.user_email }}
+        threads: 8
 
-        {%- endif %}
+      super-admin:
+        type: snowflake 
+        account: {{ cookiecutter.snowflake_account }}
+        authenticator: externalbrowser 
+        role: ACCOUNTADMIN
+        warehouse: COMPUTE_WH
+        database: {{ cookiecutter.project_prefix }}
+        schema: analytics
+        user: {{ cookiecutter.user_email }}
+        threads: 8
