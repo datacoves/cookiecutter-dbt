@@ -20,3 +20,6 @@ cookiecutter gh:Keystone-Strategy/ks-cookiecutter-dbt
 ```
 
 Answer the prompts to create a pre-generated dbt project folder!
+
+# Example project
+A rendered example is found in the [example](example) directory. 
