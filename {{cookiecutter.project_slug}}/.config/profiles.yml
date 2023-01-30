@@ -1,52 +1,52 @@
-default:
-    target: {{ cookiecutter.target_schema }}
-    outputs:
-      dev:
-        type: snowflake 
-        # More information for the options in this file
-        # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-        
-        account: {{ cookiecutter.snowflake_account }}
-        authenticator: externalbrowser 
-        role: {{ cookicutter.project_prefix }}_TRANSFORMER 
-        warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
-        database: {{ cookiecutter.project_prefix }}_DEV
-        schema: dev_{{ cookicutter.user_initials }}
-        user: {{ cookiecutter.user_email }}
-        threads: 8
+{{ cookiecutter.project_prefix }}-data-models:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake 
+      # More information for the options in this file
+      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+      
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: {{ cookicutter.project_prefix }}_TRANSFORMER 
+      warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
+      database: {{ cookiecutter.project_prefix }}_DEV
+      schema: dev_{{ cookicutter.user_initials }}
+      user: {{ cookiecutter.user_email }}
+      threads: 8
 
-      prod:
-        type: snowflake 
-        account: {{ cookiecutter.snowflake_account }}
-        authenticator: externalbrowser 
-        role: {{ cookicutter.project_prefix }}_DEPLOYER 
-        warehouse: {{ cookiecutter.project_prefix }}_DEPLOYER_WH
-        database: {{ cookiecutter.project_prefix }}
-        schema: {{ coockiecutter.project_analysis_schema }}
-        user: {{ cookiecutter.user_email }}
-        threads: 8
+    prod:
+      type: snowflake 
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: {{ cookicutter.project_prefix }}_DEPLOYER 
+      warehouse: {{ cookiecutter.project_prefix }}_DEPLOYER_WH
+      database: {{ cookiecutter.project_prefix }}
+      schema: {{ coockiecutter.project_analysis_schema }}
+      user: {{ cookiecutter.user_email }}
+      threads: 8
 
-      admin:
-        type: snowflake 
-        # More information for the options in this file
-        # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-        
-        account: {{ cookiecutter.snowflake_account }}
-        authenticator: externalbrowser 
-        role: {{ cookicutter.project_prefix }}_ADMIN 
-        warehouse: {{ cookiecutter.project_prefix }}_ADMIN_WH
-        database: {{ cookiecutter.project_prefix }}
-        schema: {{ coockiecutter.project_analysis_schema }}
-        user: {{ cookiecutter.user_email }}
-        threads: 8
+    admin:
+      type: snowflake 
+      # More information for the options in this file
+      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+      
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: {{ cookicutter.project_prefix }}_ADMIN 
+      warehouse: {{ cookiecutter.project_prefix }}_ADMIN_WH
+      database: {{ cookiecutter.project_prefix }}
+      schema: {{ coockiecutter.project_analysis_schema }}
+      user: {{ cookiecutter.user_email }}
+      threads: 8
 
-      super-admin:
-        type: snowflake 
-        account: {{ cookiecutter.snowflake_account }}
-        authenticator: externalbrowser 
-        role: ACCOUNTADMIN
-        warehouse: COMPUTE_WH
-        database: {{ cookiecutter.project_prefix }}
-        schema: analytics
-        user: {{ cookiecutter.user_email }}
-        threads: 8
+    super-admin:
+      type: snowflake 
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: ACCOUNTADMIN
+      warehouse: COMPUTE_WH
+      database: {{ cookiecutter.project_prefix }}
+      schema: analytics
+      user: {{ cookiecutter.user_email }}
+      threads: 8
