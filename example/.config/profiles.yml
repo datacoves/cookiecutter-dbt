@@ -1,0 +1,52 @@
+example:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake 
+      # More information for the options in this file
+      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+      
+      account: keystone-projects
+      authenticator: externalbrowser 
+      role: TEST_TRANSFORMER 
+      warehouse: TEST_TRANSFORMER_WH
+      database: TEST_DEV
+      schema: dev_ABC
+      user: you@keystonestrategy.com
+      threads: 8
+
+    prod:
+      type: snowflake 
+      account: keystone-projects
+      authenticator: externalbrowser 
+      role: TEST_DEPLOYER 
+      warehouse: TEST_DEPLOYER_WH
+      database: TEST
+      schema: analytics
+      user: you@keystonestrategy.com
+      threads: 8
+
+    admin:
+      type: snowflake 
+      # More information for the options in this file
+      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
+      
+      account: keystone-projects
+      authenticator: externalbrowser 
+      role: TEST_ADMIN 
+      warehouse: TEST_ADMIN_WH
+      database: TEST
+      schema: analytics
+      user: you@keystonestrategy.com
+      threads: 8
+
+    super-admin:
+      type: snowflake 
+      account: keystone-projects
+      authenticator: externalbrowser 
+      role: ACCOUNTADMIN
+      warehouse: COMPUTE_WH
+      database: TEST
+      schema: analytics
+      user: you@keystonestrategy.com
+      threads: 8

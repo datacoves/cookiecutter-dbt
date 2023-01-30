@@ -1,0 +1,36 @@
+example:
+
+  outputs:
+
+    dev:
+      type: snowflake
+      # It is possible to use different authentication methods
+      # See https://docs.getdbt.com/reference/warehouse-profiles/snowflake-profile
+      account: "{{ env_var('SF_ACCOUNT') }}"
+      user: "{{ env_var('SF_CI_USER') }}"
+      password: "{{ env_var('SF_CI_PASSWORD') }}"
+      role:  "{{ env_var('SF_CI_ROLE') }}"
+      warehouse: "{{ env_var('SF_CI_WAREHOUSE') }}"
+
+      # depending on preference, these might change too
+      schema: dev_ci
+      database: "{{ env_var('SF_CI_DATABASE') }}_DEV"
+      threads: 4
+
+    prod:
+      type: snowflake
+      # It is possible to use different authentication methods
+      # See https://docs.getdbt.com/reference/warehouse-profiles/snowflake-profile
+      account: "{{ env_var('SF_ACCOUNT') }}"
+      user: "{{ env_var('SF_CI_USER') }}"
+      password: "{{ env_var('SF_CI_PASSWORD') }}"
+      role:  "{{ env_var('SF_CI_ROLE') }}"
+      warehouse: "{{ env_var('SF_CI_WAREHOUSE') }}"
+
+      # depending on preference, these might change too
+      schema: analytics
+      database: "{{ env_var('SF_CI_DATABASE') }}"
+      # depending on preference, these might change too
+      threads: 4
+
+  target: dev

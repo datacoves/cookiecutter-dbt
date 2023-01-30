@@ -1,0 +1,7 @@
+packages:
+
+  - package: dbt-labs/dbt_external_tables
+    version: 0.8.2
+
+  - git: git@github.com:Keystone-Strategy/ks-dbt-utils.git 
+    revision: main 
