@@ -4,7 +4,7 @@
 # for example: YOUREMAIL@keystonestrategy should become atestuser@keystonestrategy.com
 # filled in with your email address
 
-TEST_data_models:
+example:
   outputs:
     dev:
       type: snowflake 

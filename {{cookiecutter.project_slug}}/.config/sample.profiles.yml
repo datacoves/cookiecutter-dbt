@@ -4,7 +4,7 @@
 # for example: YOUREMAIL@keystonestrategy should become atestuser@keystonestrategy.com
 # filled in with your email address
 
-{{ cookiecutter.project_prefix }}_data_models:
+{{ cookiecutter.project_slug.replace('-', '_') }}:
   outputs:
     dev:
       type: snowflake 
