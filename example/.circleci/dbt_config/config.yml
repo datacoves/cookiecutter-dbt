@@ -1,0 +1,87 @@
+version: 2.1
+
+orbs:
+  # The python orb contains a set of prepackaged circleci configuration you can use repeatedly in your configurations files
+  # Orb commands and jobs help you with common scripting around a language/tool
+  # so you dont have to copy and paste it everywhere.
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
+  python: circleci/python@1.2
+
+commands:
+  build_dbt:
+    steps:
+      # - run: pip3 install dbt-snowflake
+      - run: dbt deps
+
+  run_dbt:
+    parameters:
+      env: 
+        default: "dev"
+        type: string
+      extra_args:
+        default: ""
+        type: string
+
+    steps:
+      - run: 
+          name: 'Run dbt'
+          no_output_timeout: 30m
+          command: |
+            dbt run --profiles-dir .circleci/dbt_config --target << parameters.env >> << parameters.extra_args >>
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.9
+    resource_class: medium
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pipenv
+
+      - build_dbt
+      - run_dbt:
+          env: dev
+
+  deploy:
+    docker:
+      - image: cimg/python:3.9
+    environment:
+      IS_PRODUCTION: '1'
+    resource_class: medium
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pipenv
+      - build_dbt
+      - run_dbt:
+          env: prod
+            
+           
+# Triggers are being phased out and pipeline filtering is the recommended
+# approach + scheduled triggers in the UI
+# https://circleci.com/docs/2.0/scheduled-pipelines/#workflows-filtering
+workflows:
+  version: 2
+  build:
+    when:
+      not:
+        equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - main
+
+  deploy:
+    when:
+      not:
+        equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main

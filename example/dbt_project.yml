@@ -2,12 +2,12 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: '{{ cookiecutter.project_slug.replace('-', '_') }}'
+name: 'example'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: {{ cookiecutter.project_slug.replace('-', '_') }}
+profile: example
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -26,8 +26,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # KS DBT Utils vars are defined here
 vars:
   ks-dbt:
-    base_name: {{ cookiecutter.project_prefix }}
-    project_code: {{ cookiecutter.project_code }}
+    base_name: TEST
+    project_code: XX-12345 Test Project
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e 
+
+export DBT_PROFILES_DIR=$(pwd)/.config
+pipenv run "$@"

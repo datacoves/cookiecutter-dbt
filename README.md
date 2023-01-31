@@ -1,6 +1,6 @@
 # Cookiecutter dbt
 
-Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/), `Cookiecutter dbt` is a framework for jumpstarting production-ready dbt projects quickly.
+Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/stable/), `KS Cookiecutter dbt` is a framework for jumpstarting production-ready dbt projects quickly the way Keystone prefers to deploy them.
 
 ## Features
 
@@ -8,7 +8,7 @@ Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/
 * Works with Python 3.8
 * SQLFluff linting
 * pre-commit hooks integrated
-* GitLab CI and GitHub Actions supported
+* CircleCI setup automatically
 
 ## Installation
 
@@ -16,5 +16,10 @@ Powered by Python library [Cookiecutter](https://cookiecutter.readthedocs.io/en/
 
 ```
 pip install "cookiecutter>=1.7.0"
-cookiecutter gh:datacoves/cookiecutter-dbt
+cookiecutter gh:Keystone-Strategy/ks-cookiecutter-dbt
 ```
+
+Answer the prompts to create a pre-generated dbt project folder!
+
+# Example project
+A rendered example is found in the [example](example) directory. 
