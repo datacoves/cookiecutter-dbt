@@ -1,7 +1,7 @@
 # How to use this file
 # This is a sample profiles.yml with most of the values filled in
-# to use it, replace the capitalized variables with data unique to you.
-# for example: YOUREMAIL@keystonestrategy should become atestuser@keystonestrategy.com
+# to use it, replace the << capitalized variables >> with data unique to you.
+# for example: << YOUREMAIL >>@keystonestrategy should become atestuser@keystonestrategy.com
 # filled in with your email address
 
 {{ cookiecutter.project_slug.replace('-', '_') }}:
@@ -11,13 +11,13 @@
       # More information for the options in this file
       # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
       
-      account: SNOWFLAKE_ACCOUNT
+      account: << SNOWFLAKE ACCOUNT >>
       authenticator: externalbrowser 
       role: {{ cookiecutter.project_prefix }}_TRANSFORMER 
       warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
       database: {{ cookiecutter.project_prefix }}_DEV
-      schema: dev_YOURINITIALS
-      user: YOUREMAIL@keystonestrategy.com
+      schema: dev_<< YOURINITIALS >>
+      user: << YOUREMAIL >>@keystonestrategy.com
       threads: 8
 
   target: dev
