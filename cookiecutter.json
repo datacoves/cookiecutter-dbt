@@ -2,7 +2,9 @@
     "project_name": "Awesome Keystone Example Project",
     "project_prefix" : "EXAMPLE_PROJECT",
     "project_code" : "XX-12345 EXAMLE Project",
-    "project_slug": "{{cookiecutter.project_prefix.lower() }}-data-models",
+    "_project_prefix_safe": "{{ cookiecutter.project_prefix.replace('-', '_')|upper }}", 
+    "project_slug": "{{cookiecutter._project_prefix.lower() }}-data-models",
+    "_project_slug_safe": "{{ cookiecutter.project_slug.replace('-', '_')|lower }}",
     "project_analysis_schema": "analytics",
     "snowflake_account": "keystone-projects",
     "user_email" : "you@keystonestrategy.com",
@@ -19,5 +21,6 @@
     "run_env_creation": [
         "Yes",
         "No"
-    ]
+    ], 
+
 }
