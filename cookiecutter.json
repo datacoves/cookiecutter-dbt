@@ -1,13 +1,12 @@
 {
-    "project_name": "Awesome dbt Project",
-    "project_prefix" : "TEST",
-    "project_code" : "XX-12345 Test Project",
+    "project_name": "Awesome Keystone Example Project",
+    "project_prefix" : "EXAMPLE_PROJECT",
+    "project_code" : "XX-12345 EXAMLE Project",
     "project_slug": "{{cookiecutter.project_prefix.lower() }}-data-models",
     "project_analysis_schema": "analytics",
     "snowflake_account": "keystone-projects",
     "user_email" : "you@keystonestrategy.com",
     "user_initials" : "ABC", 
-
     "run_git_init": [
         "Yes",
         "No"
