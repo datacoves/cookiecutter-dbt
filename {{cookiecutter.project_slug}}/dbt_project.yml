@@ -33,4 +33,5 @@ vars:
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 # These settings can be overridden in the individual model files
 models:
+  {{ cookiecutter._project_slug_safe }}:
 
