@@ -6,6 +6,7 @@
     "project_slug": "{{cookiecutter._project_prefix.lower() }}-data-models",
     "_project_slug_safe": "{{ cookiecutter.project_slug.replace('-', '_')|lower }}",
     "project_analysis_schema": "analytics",
+    "_project_analysis_schema_safe" : "{{ cookiecutter.project_analysis_schema.replace('-', '_')|upper }}",
     "snowflake_account": "keystone-projects",
     "user_email" : "you@keystonestrategy.com",
     "user_initials" : "ABC", 
