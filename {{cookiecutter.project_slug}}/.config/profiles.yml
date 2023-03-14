@@ -1,52 +1,59 @@
-{{ cookiecutter.project_slug.replace('-', '_') }}:
+credentials: &credentials
+  account: {{ cookiecutter.snowflake_account }}
+  user: {{ cookiecutter.user_email }}
+
+dev_schema: &dev-schema
+  schema: dev_{{ cookiecutter.user_initials }}
+
+# Only change below this line if you know what you're doing
+# =========================================================
+
+{{ cookiecutter._project_slug_safe }}:
   target: dev
   outputs:
     dev:
       type: snowflake 
       # More information for the options in this file
       # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-      
-      account: {{ cookiecutter.snowflake_account }}
+      <<: *credentials 
+      <<: *dev-schema
+
       authenticator: externalbrowser 
-      role: {{ cookiecutter.project_prefix }}_TRANSFORMER 
-      warehouse: {{ cookiecutter.project_prefix }}_TRANSFORMER_WH
-      database: {{ cookiecutter.project_prefix }}_DEV
-      schema: dev_{{ cookiecutter.user_initials }}
-      user: {{ cookiecutter.user_email }}
+      role: {{ cookiecutter._project_prefix_safe }}_TRANSFORMER 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_TRANSFORMER_WH
+      database: {{ cookiecutter._project_prefix_safe }}_DEV
       threads: 8
 
     prod:
       type: snowflake 
-      account: {{ cookiecutter.snowflake_account }}
+      <<: *credentials
+
       authenticator: externalbrowser 
-      role: {{ cookiecutter.project_prefix }}_DEPLOYER 
-      warehouse: {{ cookiecutter.project_prefix }}_DEPLOYER_WH
-      database: {{ cookiecutter.project_prefix }}
-      schema: {{ cookiecutter.project_analysis_schema }}
-      user: {{ cookiecutter.user_email }}
+      role: {{ cookiecutter._project_prefix_safe }}_DEPLOYER 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_DEPLOYER_WH
+      database: {{ cookiecutter._project_prefix_safe }}
+      schema: {{ cookiecutter._project_analysis_schema_safe }}
       threads: 8
 
     admin:
       type: snowflake 
-      # More information for the options in this file
-      # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-      
+      <<: *credentials 
+
       account: {{ cookiecutter.snowflake_account }}
       authenticator: externalbrowser 
-      role: {{ cookiecutter.project_prefix }}_ADMIN 
-      warehouse: {{ cookiecutter.project_prefix }}_ADMIN_WH
-      database: {{ cookiecutter.project_prefix }}
-      schema: {{ cookiecutter.project_analysis_schema }}
-      user: {{ cookiecutter.user_email }}
+      role: {{ cookiecutter._project_prefix_safe }}_ADMIN 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_ADMIN_WH
+      database: {{ cookiecutter._project_prefix_safe }}
+      schema: {{ cookiecutter._project_analysis_schema_safe }}
       threads: 8
 
     super-admin:
       type: snowflake 
-      account: {{ cookiecutter.snowflake_account }}
+      <<: *credentials
+
       authenticator: externalbrowser 
       role: ACCOUNTADMIN
-      warehouse: COMPUTE_WH
-      database: {{ cookiecutter.project_prefix }}
-      schema: analytics
-      user: {{ cookiecutter.user_email }}
+      warehouse: ADMIN_WH
+      database: {{ cookiecutter._project_prefix_safe }}
+      schema: {{ cookiecutter._project_analysis_schema_safe }}
       threads: 8

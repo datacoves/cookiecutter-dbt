@@ -3,22 +3,53 @@
 # to use it, replace the << capitalized variables >> with data unique to you.
 # for example: << YOUREMAIL >>@keystonestrategy should become atestuser@keystonestrategy.com
 # filled in with your email address
+credentials: &credentials
+  account: << SNOWFLAKE ACCOUNT >>
+  user: << YOUREMAIL >>@keystonestrategy.com
+
+dev_schema: &dev-schema
+  schema: dev_<< YOURINITIALS >>
+
+# Only change below this line if you know what you're doing
+# =========================================================
+# NOTE: you need to have the roles in order for the different 
+# profiles to work. 
 
 {{ cookiecutter._project_slug_safe }}:
+  target: dev
   outputs:
     dev:
       type: snowflake 
       # More information for the options in this file
       # can be found here: https://docs.getdbt.com/dbt-cli/configure-your-profile
-      
-      account: << SNOWFLAKE ACCOUNT >>
-      authenticator: externalbrowser 
-      role: {{ cookiecutter._project_prefix_safe}}_TRANSFORMER 
-      warehouse: {{ cookiecutter._project_prefix_safe}}_TRANSFORMER_WH
-      database: {{ cookiecutter._project_prefix_safe}}_DEV
-      schema: dev_<< YOURINITIALS >>
-      user: << YOUREMAIL >>@keystonestrategy.com
-      threads: 8
-      client_session_keep_alive: true
+      <<: *credentials 
+      <<: *dev-schema
 
-  target: dev
+      authenticator: externalbrowser 
+      role: {{ cookiecutter._project_prefix_safe }}_TRANSFORMER 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_TRANSFORMER_WH
+      database: {{ cookiecutter._project_prefix_safe }}_DEV
+      threads: 8
+
+    prod:
+      type: snowflake 
+      <<: *credentials
+
+      authenticator: externalbrowser 
+      role: {{ cookiecutter._project_prefix_safe }}_DEPLOYER 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_DEPLOYER_WH
+      database: {{ cookiecutter._project_prefix_safe }}
+      schema: {{ cookiecutter._project_analysis_schema_safe }}
+      threads: 8
+
+    admin:
+      type: snowflake 
+      <<: *credentials 
+
+      account: {{ cookiecutter.snowflake_account }}
+      authenticator: externalbrowser 
+      role: {{ cookiecutter._project_prefix_safe }}_ADMIN 
+      warehouse: {{ cookiecutter._project_prefix_safe }}_ADMIN_WH
+      database: {{ cookiecutter._project_prefix_safe }}
+      schema: {{ cookiecutter._project_analysis_schema_safe }}
+      threads: 8
