@@ -19,5 +19,6 @@
       schema: dev_<< YOURINITIALS >>
       user: << YOUREMAIL >>@keystonestrategy.com
       threads: 8
+      client_session_keep_alive: true
 
   target: dev
